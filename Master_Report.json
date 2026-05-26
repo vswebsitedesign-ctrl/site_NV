@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-05-25",
+  "last_updated": "2026-05-26",
   "project_metadata": {
     "name": "site_NV",
     "domain": "https://niddvalleybp.co.uk",
@@ -154,6 +154,14 @@
     {
       "date": "2026-05-25",
       "change": "Added GitHub Actions build-only workflow (no rsync). Created build.py and .gitattributes."
+    },
+    {
+      "date": "2026-05-25",
+      "change": "Initialized git repository locally, added .gitignore, created initial commit."
+    },
+    {
+      "date": "2026-05-25",
+      "change": "Pushed to GitHub: remote set to https://github.com/vswebsitedesign-ctrl/site_NV.git. GitHub Actions will now build on push."
     }
   ],
   "known_issues": {
@@ -192,9 +200,15 @@
     "domain": "niddvalleybp.co.uk",
     "plesk_path": "/var/www/vhosts/niddvalleybp.co.uk/httpdocs/",
     "deploy_user": "root",
-    "github_actions_status": "build-only workflow added (no Plesk)",
+    "github_actions_status": "build-only workflow \u2013 ready, runs on push",
     "workflow_file": ".github/workflows/deploy.yml",
-    "notes": "Deployment to Plesk not configured; artifact uploads build/"
+    "notes": "Deployment to Plesk not configured; artifact uploads build/",
+    "git_initialized": true,
+    "git_remote": "https://github.com/vswebsitedesign-ctrl/site_NV.git",
+    "server_ip": "NOT YET CONFIGURED",
+    "deploy_configured": false,
+    "deploy_status": "PENDING \u2014 no IP or deploy user set in workflow",
+    "recommended_method": "GitHub Actions + rsync over SSH as Plesk domain system user (not root) \u2014 see site_JKRS deploy.yml as reference implementation"
   },
   "content_status": {
     "pages_built": "unknown \u2014 not yet audited",
