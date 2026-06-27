@@ -262,6 +262,22 @@
     {
       "date": "2026-06-27",
       "change": "Master Report status fields updated: all GIT issues resolved, all LIVE-P1/P2 issues resolved locally, stray_files cleared, favicon status corrected. Build clean at 123 URLs. Ready to deploy."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "GIT-005 RESOLVED: session_start.sh run at start of session — branch session-2026-06-27-0810 created. Session branching workflow now active."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "DEPLOYED: omni-builder deployed live for the first time via rsync to root@217.154.45.205. Jekyll replaced. 7.7MB transferred. All 123 URLs live and returning 200."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "LIVE VERIFIED: homepage, types-of-pointing-services, repointing-brickwork-stonework-harrogate, repointing, chimney-repairs, sitemap.xml all returning 200 on live server."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "SITEMAP SUBMITTED: https://niddvalleybp.co.uk/sitemap.xml submitted to Google Search Console. 123 URLs queued for crawl."
     }
   ],
   "known_issues": {
@@ -1489,7 +1505,7 @@
       },
       "GIT-005": {
         "severity": "MEDIUM",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "Currently on main with no session branch — Master Report rules require session branch before any work",
         "fix": "Run bash session_start.sh at start of every future session"
       }
