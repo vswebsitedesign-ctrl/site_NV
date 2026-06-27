@@ -12,3 +12,12 @@ Thumbs.db
 
 # Secrets (if any)
 *.env
+
+# GSC API key — never commit
+key.json
+
+# Windows Zone.Identifier artifacts
+*.Identifier
+
+# GSC credential files
+gsc-*.json
