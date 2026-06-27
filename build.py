@@ -96,6 +96,9 @@ def build():
     robots_txt = "User-agent: *\nAllow: /\n\nSitemap: https://niddvalleybp.co.uk/sitemap.xml\n"
     with open(os.path.join('build', 'robots.txt'), 'w') as f:
         f.write(robots_txt)
+    # BUG-009: copy send.php from project root into build/ on every build
+    if os.path.exists("send.php"):
+        shutil.copy("send.php", os.path.join("build", "send.php"))
     print(f"Built {len(pages)} pages, sitemap.xml ({len(set(canonical_urls))} URLs), robots.txt")
 
 if __name__ == '__main__':

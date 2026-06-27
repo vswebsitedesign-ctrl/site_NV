@@ -29,12 +29,12 @@
     "cookie_banner": {
       "status": "inlined",
       "location": "theme/base.html",
-      "notes": "Cookie banner inlined directly into base.html \u2014 engine has no include system. Do not use {% include %} tags."
+      "notes": "Cookie banner inlined directly into base.html — engine has no include system. Do not use {% include %} tags."
     }
   },
   "data_schema": {
     "pages.json": {
-      "total_pages": 6,
+      "total_pages": 7,
       "slugs": [
         ""
       ],
@@ -43,7 +43,7 @@
         "body_content",
         "title"
       ],
-      "notes": "Location pages removed \u2014 now generated from data/locations.json. Remaining: about-us, index, masonry-repairs, contact, cookie-policy, services."
+      "notes": "Location pages removed — now generated from data/locations.json. Remaining: about-us, index, masonry-repairs, contact, cookie-policy, services."
     },
     "locations.json": {
       "total_locations": 108,
@@ -69,7 +69,7 @@
         "mortar_lime",
         "commercial"
       ],
-      "notes": "Single source of truth for all 108 location pages. Add new locations here \u2014 build.py generates pages automatically."
+      "notes": "Single source of truth for all 108 location pages. Add new locations here — build.py generates pages automatically."
     }
   },
   "build_pipeline": {
@@ -101,23 +101,23 @@
     },
     {
       "date": "2026-05-25",
-      "change": "Engine fix: if __name__ == __main__ guard added to build_sites.py \u2014 import no longer triggers full loop across all sites."
+      "change": "Engine fix: if __name__ == __main__ guard added to build_sites.py — import no longer triggers full loop across all sites."
     },
     {
       "date": "2026-05-25",
-      "change": "base.html must use {{ content }} only \u2014 engine does plain string replace, no Jinja2, no {% %} tags supported."
+      "change": "base.html must use {{ content }} only — engine does plain string replace, no Jinja2, no {% %} tags supported."
     },
     {
       "date": "2026-05-25",
-      "change": "Global components (header, cookie banner) must be inlined directly into theme/base.html \u2014 engine has no include system."
+      "change": "Global components (header, cookie banner) must be inlined directly into theme/base.html — engine has no include system."
     },
     {
       "date": "2026-05-25",
-      "change": "assets/ directory must be copied into build/ or served from project root \u2014 build/ directory only contains generated HTML."
+      "change": "assets/ directory must be copied into build/ or served from project root — build/ directory only contains generated HTML."
     },
     {
       "date": "2026-05-25",
-      "change": "Never append serve command to build command \u2014 if server already running on port 8000 it will throw OSError. Build only, then refresh browser."
+      "change": "Never append serve command to build command — if server already running on port 8000 it will throw OSError. Build only, then refresh browser."
     },
     {
       "date": "2026-05-25",
@@ -125,7 +125,7 @@
     },
     {
       "date": "2026-05-25",
-      "change": "Migration confirmed complete. Jekyll _data files not required \u2014 all content rendered into pages.json. Images migrated."
+      "change": "Migration confirmed complete. Jekyll _data files not required — all content rendered into pages.json. Images migrated."
     },
     {
       "date": "2026-05-25",
@@ -137,7 +137,7 @@
     },
     {
       "date": "2026-05-25",
-      "change": "Added known_issue: body_content must never contain full standalone HTML \u2014 double header/footer risk on all sites migrated from Jekyll."
+      "change": "Added known_issue: body_content must never contain full standalone HTML — double header/footer risk on all sites migrated from Jekyll."
     },
     {
       "date": "2026-05-25",
@@ -217,33 +217,45 @@
     },
     {
       "date": "2026-06-27",
-      "change": "Live site audit completed. Key finding: live site is original Jekyll site \u2014 omni-builder never deployed. CSS missing on ALL pages. 2 critical 404s found on pages with active GSC rankings (/types-of-pointing-services/ pos 14.17, /repointing-brickwork-stonework-harrogate/ pos 31). 5 action items logged LIVE-P1-001 through LIVE-P2-002."
+      "change": "Live site audit completed. Key finding: live site is original Jekyll site — omni-builder never deployed. CSS missing on ALL pages. 2 critical 404s found on pages with active GSC rankings (/types-of-pointing-services/ pos 14.17, /repointing-brickwork-stonework-harrogate/ pos 31). 5 action items logged LIVE-P1-001 through LIVE-P2-002."
     },
     {
       "date": "2026-06-27",
-      "change": "Session continued: BUG-001, BUG-002, BUG-004, BUG-005, BUG-007, BUG-008 RESOLVED and verified by rebuilt output on disk. BUG-003 PARTIALLY_RESOLVED \u2014 injection mechanism working, actual meta description text for 31 pages still pending as separate content task. New bug BUG-016 found and fixed within same session: canonical_url fallback mishandled the non-empty \"index\" homepage slug, causing /index/ to appear as canonical and in sitemap.xml instead of root URL \u2014 corrected and reverified. All fixes snapshotted individually before editing (before-homepage-slug-fix-BUG-004-005, before-sitemap-robots-BUG-007-008, before-canonical-index-fix) and confirmed via rebuilt output, not assumption."
+      "change": "Session continued: BUG-001, BUG-002, BUG-004, BUG-005, BUG-007, BUG-008 RESOLVED and verified by rebuilt output on disk. BUG-003 PARTIALLY_RESOLVED — injection mechanism working, actual meta description text for 31 pages still pending as separate content task. New bug BUG-016 found and fixed within same session: canonical_url fallback mishandled the non-empty \"index\" homepage slug, causing /index/ to appear as canonical and in sitemap.xml instead of root URL — corrected and reverified. All fixes snapshotted individually before editing (before-homepage-slug-fix-BUG-004-005, before-sitemap-robots-BUG-007-008, before-canonical-index-fix) and confirmed via rebuilt output, not assumption."
     },
     {
       "date": "2026-06-27",
-      "change": "Location page generator built. data/locations.json created with 108 location records (107 pulled from live server + Harrogate added as new). theme/location.html created as single location template with 11 tokens. build.py patched to generate all 108 location pages from locations.json at build time. 25 location page HTML blobs removed from pages.json \u2014 pages.json now contains only 6 non-location pages. Full rebuild confirmed: 108 location pages + 6 pages = 114 URLs in sitemap, zero unreplaced tokens across entire build."
+      "change": "Location page generator built. data/locations.json created with 108 location records (107 pulled from live server + Harrogate added as new). theme/location.html created as single location template with 11 tokens. build.py patched to generate all 108 location pages from locations.json at build time. 25 location page HTML blobs removed from pages.json — pages.json now contains only 6 non-location pages. Full rebuild confirmed: 108 location pages + 6 pages = 114 URLs in sitemap, zero unreplaced tokens across entire build."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "BUG-009 RESOLVED: send.php retrieved from live Jekyll server, saved to project root, build.py patched to copy send.php into build/ on every build. Verified in build output."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "LIVE-P1-001 RESOLVED locally: types-of-pointing-services page created fresh (content gone from all sources), added to data/pages.json as 7th page entry with full inline-styled body_content, title, og_title, meta_description. Built and verified — zero unreplaced tokens, correct title tag."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "GIT-001/002/004 RESOLVED: key.json and *.Identifier added to .gitignore, key.json removed from git cache. All core project files committed and pushed to GitHub — locations.json, location.html, build.py, base.html, pages.json, Master_Report.json. LFS objects uploaded successfully."
     }
   ],
   "known_issues": {
-    "template_tags_in_base": "base.html may contain {% %} or {{ title }} tags the engine cannot process \u2014 use {{ content }} only",
-    "includes_not_rendered": "engine has no include system \u2014 all global components must be inlined into base.html",
-    "assets_not_in_build": "assets/ directory is not copied to build/ automatically \u2014 serve from project root or copy manually",
-    "port_clash": "always check port 8000 is free before serving \u2014 build only and refresh if server already running",
-    "assets_build_sync": "assets/ must be re-copied into build/ after every build \u2014 cp -r assets/ build/assets/ from each site root",
+    "template_tags_in_base": "base.html may contain {% %} or {{ title }} tags the engine cannot process — use {{ content }} only",
+    "includes_not_rendered": "engine has no include system — all global components must be inlined into base.html",
+    "assets_not_in_build": "assets/ directory is not copied to build/ automatically — serve from project root or copy manually",
+    "port_clash": "always check port 8000 is free before serving — build only and refresh if server already running",
+    "assets_build_sync": "assets/ must be re-copied into build/ after every build — cp -r assets/ build/assets/ from each site root",
     "body_content_full_html": "body_content must never contain full standalone HTML documents (no <!DOCTYPE>, <html>, <head>, <body> tags). Strip to <main> contents only. Full documents cause double header/footer when wrapped by base.html. Fix: re.search(r\"<main[^>]*>(.*?)</main>\", body, re.DOTALL)",
     "jekyll_site_source_of_truth": "Where a matching Jekyll source exists at /home/chubert/<PROJECT>/_site/, use compiled _site HTML as body_content source of truth. Extract <main> contents only. Never use AI-rewritten content when compiled source exists.",
-    "github_secret_name": "GitHub secret MUST be named SSH_PRIVATE_KEY \u2014 workflow references secrets.SSH_PRIVATE_KEY. Any other name causes Permission denied on rsync.",
-    "lfs_checkout": "pages.json tracked via Git LFS \u2014 workflow checkout must include lfs: true or build fails with empty JSON error.",
-    "build_script": "build.py must exist in repo root \u2014 GitHub Actions runner calls python3 build.py directly.",
-    "yaml_multiline": "Never embed multiline Python in deploy.yml \u2014 always use a separate build.py script to avoid YAML syntax errors.",
-    "homepage_slug": "Engine builds index slug as build/index/index.html \u2014 must be manually copied to build/index.html after every build: cp build/index/index.html build/index.html",
-    "base_html_jekyll_tags": "base.html may contain Jekyll tags (site.baseurl, site.title, prepend filters, block/endblock) the engine cannot process \u2014 audit base.html before first build and replace all with plain values or {{ content }}",
-    "missing_js_assets": "cookieconsent.umd.js and cookie-init.js may be referenced in base.html but not exist in assets/js/ \u2014 check and remove missing JS references from base.html",
-    "head_styles_in_jekyll": "Some Jekyll pages store CSS in <head> <style> blocks \u2014 extractor must pull <style> block from <head> AND prepend to body content. Affects pages using custom layouts without <main> tags."
+    "github_secret_name": "GitHub secret MUST be named SSH_PRIVATE_KEY — workflow references secrets.SSH_PRIVATE_KEY. Any other name causes Permission denied on rsync.",
+    "lfs_checkout": "pages.json tracked via Git LFS — workflow checkout must include lfs: true or build fails with empty JSON error.",
+    "build_script": "build.py must exist in repo root — GitHub Actions runner calls python3 build.py directly.",
+    "yaml_multiline": "Never embed multiline Python in deploy.yml — always use a separate build.py script to avoid YAML syntax errors.",
+    "homepage_slug": "Engine builds index slug as build/index/index.html — must be manually copied to build/index.html after every build: cp build/index/index.html build/index.html",
+    "base_html_jekyll_tags": "base.html may contain Jekyll tags (site.baseurl, site.title, prepend filters, block/endblock) the engine cannot process — audit base.html before first build and replace all with plain values or {{ content }}",
+    "missing_js_assets": "cookieconsent.umd.js and cookie-init.js may be referenced in base.html but not exist in assets/js/ — check and remove missing JS references from base.html",
+    "head_styles_in_jekyll": "Some Jekyll pages store CSS in <head> <style> blocks — extractor must pull <style> block from <head> AND prepend to body content. Affects pages using custom layouts without <main> tags."
   },
   "assets": {
     "images_migrated": true,
@@ -264,18 +276,18 @@
     "domain": "niddvalleybp.co.uk",
     "plesk_path": "/var/www/vhosts/niddvalleybp.co.uk/httpdocs/",
     "deploy_user": "root",
-    "github_actions_status": "build-only workflow \u2013 ready, runs on push",
+    "github_actions_status": "build-only workflow – ready, runs on push",
     "workflow_file": ".github/workflows/deploy.yml",
     "notes": "Deployment to Plesk not configured; artifact uploads build/",
     "git_initialized": true,
     "git_remote": "https://github.com/vswebsitedesign-ctrl/site_NV.git",
     "server_ip": "NOT YET CONFIGURED",
     "deploy_configured": false,
-    "deploy_status": "PENDING \u2014 no IP or deploy user set in workflow",
-    "recommended_method": "GitHub Actions + rsync over SSH as Plesk domain system user (not root) \u2014 see site_JKRS deploy.yml as reference implementation"
+    "deploy_status": "PENDING — no IP or deploy user set in workflow",
+    "recommended_method": "GitHub Actions + rsync over SSH as Plesk domain system user (not root) — see site_JKRS deploy.yml as reference implementation"
   },
   "content_status": {
-    "pages_built": "unknown \u2014 not yet audited",
+    "pages_built": "unknown — not yet audited",
     "base_html_status": "minimal template added",
     "assets_in_build": "unknown",
     "last_build": "2026-05-25",
@@ -302,23 +314,23 @@
     ],
     "mandatory_session_workflow": [
       "1. READ this Master Report in full before any action",
-      "2. bash snapshot.sh \"label\" \u2014 run before EVERY risky change",
-      "3. bash restore.sh snapshots/X \u2014 instant restore if anything breaks",
+      "2. bash snapshot.sh \"label\" — run before EVERY risky change",
+      "3. bash restore.sh snapshots/X — instant restore if anything breaks",
       "4. Commit and push only after local build verified clean"
     ],
     "emergency_rollback": "git checkout main && git reset --hard HEAD~1",
-    "deploy_command": "SERVER NOT YET CONFIGURED \u2014 do not deploy",
+    "deploy_command": "SERVER NOT YET CONFIGURED — do not deploy",
     "send_php_deploy": "SERVER NOT YET CONFIGURED",
-    "github_actions": "build-only \u2014 NO rsync in deploy.yml \u2014 all deploys are manual rsync from local machine",
+    "github_actions": "build-only — NO rsync in deploy.yml — all deploys are manual rsync from local machine",
     "ai_rules": [
-      "NEVER modify files inside ./build/ \u2014 fully overwritten on every build",
-      "NEVER rewrite build.py from scratch \u2014 targeted edits only",
+      "NEVER modify files inside ./build/ — fully overwritten on every build",
+      "NEVER rewrite build.py from scratch — targeted edits only",
       "NEVER run sed/perl/regex on build/ files",
       "NEVER commit directly to main without human confirmation",
-      "NEVER guess paths or filenames \u2014 read Master Report first",
-      "NEVER deploy via GitHub Actions rsync \u2014 manual rsync only",
+      "NEVER guess paths or filenames — read Master Report first",
+      "NEVER deploy via GitHub Actions rsync — manual rsync only",
       "NEVER leave send.php redirecting anywhere other than /thank-you/",
-      "NEVER delete fields from Master Report \u2014 append only",
+      "NEVER delete fields from Master Report — append only",
       "ALWAYS read Master Report in full before any bash command",
       "ALWAYS snapshot before every risky change",
       "ALWAYS verify changes with a read-back command before building",
@@ -332,9 +344,9 @@
   },
   "session_workflow": {
     "description": "Mandatory workflow for every AI session",
-    "before_any_work": "Read Master_Report.json in full \u2014 no exceptions",
-    "before_risky_change": "bash snapshot.sh \"description\" \u2014 snapshots all critical files",
-    "restore_from_snapshot": "bash restore.sh snapshots/TIMESTAMP_label \u2014 restores all critical files",
+    "before_any_work": "Read Master_Report.json in full — no exceptions",
+    "before_risky_change": "bash snapshot.sh \"description\" — snapshots all critical files",
+    "restore_from_snapshot": "bash restore.sh snapshots/TIMESTAMP_label — restores all critical files",
     "session_end": "Commit with descriptive message, push to GitHub, update Master Report changelog",
     "emergency_rollback": "git checkout main && git reset --hard HEAD~1",
     "ai_mandatory_rules": [
@@ -343,31 +355,31 @@
       "Never commit directly to main during a session without human confirmation",
       "Never make changes without telling the human exactly what will change first",
       "Never run sed, perl, or regex on build/ files",
-      "Never rewrite build.py \u2014 targeted edits only",
-      "Never guess \u2014 always verify from disk",
+      "Never rewrite build.py — targeted edits only",
+      "Never guess — always verify from disk",
       "Batch all fact-finding into single commands"
     ],
     "mandatory_session_workflow": [
-      "1. bash session_start.sh \u2014 creates git branch, protects main",
-      "2. bash snapshot.sh \"label\" \u2014 run before EVERY risky change",
-      "3. bash restore.sh snapshots/X \u2014 instant restore if anything breaks",
-      "4. bash session_end.sh \"msg\" \u2014 merge to main, push, clean snapshots"
+      "1. bash session_start.sh — creates git branch, protects main",
+      "2. bash snapshot.sh \"label\" — run before EVERY risky change",
+      "3. bash restore.sh snapshots/X — instant restore if anything breaks",
+      "4. bash session_end.sh \"msg\" — merge to main, push, clean snapshots"
     ]
   },
   "recovery": {
-    "description": "Full site recovery from scratch \u2014 two commands only",
+    "description": "Full site recovery from scratch — two commands only",
     "step_1": "git clone https://github.com/vswebsitedesign-ctrl/site_NV.git",
     "step_2": "python3 build.py",
-    "note": "All assets, content, and build logic are in the repo. pages.json tracked via Git LFS \u2014 ensure lfs: true on checkout."
+    "note": "All assets, content, and build logic are in the repo. pages.json tracked via Git LFS — ensure lfs: true on checkout."
   },
   "ai_incident_log": {
-    "description": "Permanent log of AI errors on this project \u2014 read before every session",
+    "description": "Permanent log of AI errors on this project — read before every session",
     "incidents": [],
     "permanent_fix": "AI must read this entire Master Report before generating any bash commands. No assumptions. No guessing. Verify everything from disk."
   },
   "stop_protocol": {
     "trigger": "IF user says STOP",
-    "action": "halt immediately \u2014 no continuation, no suggestions \u2014 wait"
+    "action": "halt immediately — no continuation, no suggestions — wait"
   },
   "error_recovery": {
     "on_failure": [
@@ -383,31 +395,31 @@
     ]
   },
   "key_lessons": [
-    "Always read uploaded files immediately \u2014 never ask what is in them",
+    "Always read uploaded files immediately — never ask what is in them",
     "Never give deployment instructions without reading the project report first",
-    "Never use sed for replacements with special characters \u2014 always Python",
-    "Always verify output after every change \u2014 build success alone is not sufficient",
-    "Never repeat a failed approach \u2014 change method immediately",
-    "If broken: REBUILD immediately \u2014 no debugging loops",
-    "One command at a time \u2014 wait for confirmation before the next",
+    "Never use sed for replacements with special characters — always Python",
+    "Always verify output after every change — build success alone is not sufficient",
+    "Never repeat a failed approach — change method immediately",
+    "If broken: REBUILD immediately — no debugging loops",
+    "One command at a time — wait for confirmation before the next",
     "NEVER use rsync --delete on this project",
     "NEVER commit directly to main during a session"
   ],
   "hard_rules": [
-    "Never guess paths \u2014 read Master Report first",
+    "Never guess paths — read Master Report first",
     "Never use GitHub Actions to deploy to Plesk",
     "Never deploy without checking build output first",
     "NEVER use rsync --delete on this project",
     "NEVER modify build/ files directly",
-    "NEVER use sed on files with special characters \u2014 use Python",
-    "Master Report must be appended only \u2014 never delete fields",
+    "NEVER use sed on files with special characters — use Python",
+    "Master Report must be appended only — never delete fields",
     "ALWAYS snapshot before any risky change"
   ],
   "session_scripts": {
-    "session_start": "bash session_start.sh \u2014 run before any work, creates dated git branch",
-    "snapshot": "bash snapshot.sh \"label\" \u2014 snapshots build.py, theme/base.html, data/pages.json, Master_Report.json, assets/images/",
-    "restore": "bash restore.sh snapshots/TIMESTAMP_label \u2014 restores all critical files instantly",
-    "session_end": "bash session_end.sh \"msg\" \u2014 commits, merges to main, pushes, cleans snapshots"
+    "session_start": "bash session_start.sh — run before any work, creates dated git branch",
+    "snapshot": "bash snapshot.sh \"label\" — snapshots build.py, theme/base.html, data/pages.json, Master_Report.json, assets/images/",
+    "restore": "bash restore.sh snapshots/TIMESTAMP_label — restores all critical files instantly",
+    "session_end": "bash session_end.sh \"msg\" — commits, merges to main, pushes, cleans snapshots"
   },
   "gsc_audit_2026_06_27": {
     "audited": "2026-06-27",
@@ -424,7 +436,7 @@
     },
     "critical_findings": {
       "finding_1_mobile_vs_desktop": {
-        "summary": "Mobile converting at 20.9% CTR (pos 20.1) \u2014 desktop buried at pos 65.5 with 1.7% CTR despite 523 impressions",
+        "summary": "Mobile converting at 20.9% CTR (pos 20.1) — desktop buried at pos 65.5 with 1.7% CTR despite 523 impressions",
         "mobile": {
           "clicks": 14,
           "impressions": 67,
@@ -437,7 +449,7 @@
           "ctr": "1.7%",
           "avg_position": 65.5
         },
-        "conclusion": "Mobile experience working. Desktop is the core problem \u2014 pages lack content depth Google rewards on desktop."
+        "conclusion": "Mobile experience working. Desktop is the core problem — pages lack content depth Google rewards on desktop."
       },
       "finding_2_homepage_carrying_site": {
         "summary": "15 of 23 clicks came from homepage. Every service and location page is effectively invisible.",
@@ -485,32 +497,32 @@
       }
     },
     "quick_win_opportunities": {
-      "summary": "Pages ranking 6-20 \u2014 close to page 1, worth prioritising first",
+      "summary": "Pages ranking 6-20 — close to page 1, worth prioritising first",
       "pages": [
         {
           "page": "/types-of-pointing-services/",
           "impressions": 17,
           "position": 14.9,
-          "action": "Strengthen content \u2014 one push to top 10"
+          "action": "Strengthen content — one push to top 10"
         },
         {
           "page": "/repointing-brickwork-stonework-follifoot/",
           "impressions": 7,
           "position": 15.3,
           "ctr": "28.6%",
-          "action": "Already converting at 28.6% CTR \u2014 get it higher"
+          "action": "Already converting at 28.6% CTR — get it higher"
         },
         {
           "page": "/wall-restoration-cleaning/",
           "impressions": 4,
           "position": 12.0,
-          "action": "Close to page 1 \u2014 expand content"
+          "action": "Close to page 1 — expand content"
         },
         {
           "page": "/repointing-brickwork-stonework-guiseley/",
           "impressions": 5,
           "position": 16.0,
-          "action": "Thin location page \u2014 bulk out"
+          "action": "Thin location page — bulk out"
         }
       ]
     },
@@ -523,7 +535,7 @@
           "impressions": 15,
           "clicks": 0,
           "priority": "P1",
-          "issue": "Page 1 position but zero clicks \u2014 title tag or meta description failing"
+          "issue": "Page 1 position but zero clicks — title tag or meta description failing"
         },
         {
           "query": "house pointing knaresborough",
@@ -531,7 +543,7 @@
           "impressions": 11,
           "clicks": 0,
           "priority": "P2",
-          "issue": "One page away from page 1 \u2014 content needs strengthening"
+          "issue": "One page away from page 1 — content needs strengthening"
         },
         {
           "query": "house pointing harrogate",
@@ -583,7 +595,7 @@
         "priority": "P1",
         "status": "PENDING",
         "page": "/repointing-brickwork-stonework-pateley-bridge/",
-        "action": "Fix title tag and meta description \u2014 page is on page 1 for house pointing pateley bridge but getting zero clicks"
+        "action": "Fix title tag and meta description — page is on page 1 for house pointing pateley bridge but getting zero clicks"
       },
       {
         "id": "GSC-P1-002",
@@ -595,28 +607,28 @@
           "/chimney-repairs/",
           "/services/"
         ],
-        "action": "Substantially expand content on all four core service pages \u2014 60-75 impressions each but ranking page 7-9"
+        "action": "Substantially expand content on all four core service pages — 60-75 impressions each but ranking page 7-9"
       },
       {
         "id": "GSC-P2-001",
         "priority": "P2",
         "status": "PENDING",
         "page": "/types-of-pointing-services/",
-        "action": "Bulk out content \u2014 ranking 14.9, one push needed to break top 10"
+        "action": "Bulk out content — ranking 14.9, one push needed to break top 10"
       },
       {
         "id": "GSC-P2-002",
         "priority": "P2",
         "status": "PENDING",
         "page": "/wall-restoration-cleaning/",
-        "action": "Expand content \u2014 ranking 12.0, close to page 1"
+        "action": "Expand content — ranking 12.0, close to page 1"
       },
       {
         "id": "GSC-P2-003",
         "priority": "P2",
         "status": "PENDING",
         "page": "/repointing-brickwork-stonework-follifoot/",
-        "action": "Boost position \u2014 already converting at 28.6% CTR at pos 15.3, get it into top 10"
+        "action": "Boost position — already converting at 28.6% CTR at pos 15.3, get it into top 10"
       },
       {
         "id": "GSC-P2-004",
@@ -627,20 +639,20 @@
           "/repointing-brickwork-stonework-harrogate/",
           "/repointing-brickwork-stonework-spofforth/"
         ],
-        "action": "Strengthen location page content \u2014 all within striking distance of page 1 with real impressions"
+        "action": "Strengthen location page content — all within striking distance of page 1 with real impressions"
       },
       {
         "id": "GSC-P3-001",
         "priority": "P3",
         "status": "PENDING",
-        "action": "Desktop visibility \u2014 avg position 65.5. Add structured content, FAQs, and service page depth across all pages to compete on desktop"
+        "action": "Desktop visibility — avg position 65.5. Add structured content, FAQs, and service page depth across all pages to compete on desktop"
       },
       {
         "id": "GSC-P3-002",
         "priority": "P3",
         "status": "PENDING",
         "page": "/repointing-brickwork-stonework-guiseley/",
-        "action": "Thin location page \u2014 bulk out content, currently pos 16.0"
+        "action": "Thin location page — bulk out content, currently pos 16.0"
       }
     ]
   },
@@ -671,32 +683,32 @@
       "crawled_not_indexed": {
         "pages": 54,
         "severity": "CRITICAL",
-        "cause": "Thin duplicate location page content \u2014 Google visiting and rejecting all location pages"
+        "cause": "Thin duplicate location page content — Google visiting and rejecting all location pages"
       },
       "discovered_not_indexed": {
         "pages": 38,
         "severity": "CRITICAL",
-        "cause": "Google found via sitemap but not yet crawled \u2014 crawl budget being wasted"
+        "cause": "Google found via sitemap but not yet crawled — crawl budget being wasted"
       },
       "not_found_404": {
         "pages": 7,
         "severity": "CRITICAL",
-        "cause": "Pages Google expects to exist but do not \u2014 wasting crawl budget and leaking link equity"
+        "cause": "Pages Google expects to exist but do not — wasting crawl budget and leaking link equity"
       },
       "noindex_tag": {
         "pages": 1,
         "severity": "CRITICAL",
-        "cause": "A page is actively blocking itself from Google \u2014 must identify and fix"
+        "cause": "A page is actively blocking itself from Google — must identify and fix"
       },
       "blocked_403": {
         "pages": 1,
         "severity": "CRITICAL",
-        "cause": "Googlebot being refused access to a page \u2014 must fix"
+        "cause": "Googlebot being refused access to a page — must fix"
       },
       "other_4xx": {
         "pages": 1,
         "severity": "CRITICAL",
-        "cause": "Other 4xx blocking issue \u2014 must identify"
+        "cause": "Other 4xx blocking issue — must identify"
       }
     },
     "crawled_not_indexed_pages": [
@@ -904,7 +916,7 @@
         "impressions": 8,
         "clicks": 0,
         "page": "/repointing-brickwork-stonework-spofforth/",
-        "issue": "PAGE 1 POSITION \u2014 ZERO CLICKS. Title tag or meta description failing to attract clicks.",
+        "issue": "PAGE 1 POSITION — ZERO CLICKS. Title tag or meta description failing to attract clicks.",
         "status": "PENDING"
       },
       {
@@ -913,7 +925,7 @@
         "impressions": 16,
         "clicks": 0,
         "page": "/repointing-brickwork-stonework-pateley-bridge/",
-        "issue": "PAGE 1 POSITION \u2014 ZERO CLICKS. Title tag or meta description failing to attract clicks.",
+        "issue": "PAGE 1 POSITION — ZERO CLICKS. Title tag or meta description failing to attract clicks.",
         "status": "PENDING"
       }
     ],
@@ -990,7 +1002,7 @@
         "id": "GSC2-P1-001",
         "priority": "P1",
         "status": "PENDING",
-        "issue": "7 x 404 pages \u2014 Google expecting pages that do not exist",
+        "issue": "7 x 404 pages — Google expecting pages that do not exist",
         "action": "Identify all 7 404 URLs from GSC URL inspection, add 301 redirects or restore pages"
       },
       {
@@ -1013,7 +1025,7 @@
         "status": "PENDING",
         "page": "/repointing-brickwork-stonework-spofforth/",
         "query": "house pointing spofforth",
-        "issue": "Page 1 position 5.75 \u2014 zero clicks. Title/meta description failing.",
+        "issue": "Page 1 position 5.75 — zero clicks. Title/meta description failing.",
         "action": "Rewrite title tag and meta description to be click-worthy and match search intent"
       },
       {
@@ -1022,7 +1034,7 @@
         "status": "PENDING",
         "page": "/repointing-brickwork-stonework-pateley-bridge/",
         "query": "house pointing patley bridge",
-        "issue": "Page 1 position 10.19 \u2014 zero clicks. Title/meta description failing.",
+        "issue": "Page 1 position 10.19 — zero clicks. Title/meta description failing.",
         "action": "Rewrite title tag and meta description to be click-worthy and match search intent"
       },
       {
@@ -1030,15 +1042,15 @@
         "priority": "P1",
         "status": "PENDING",
         "page": "/elementor-hf/footer/",
-        "issue": "WordPress/Elementor ghost page being crawled \u2014 wasting crawl budget",
+        "issue": "WordPress/Elementor ghost page being crawled — wasting crawl budget",
         "action": "Return 404 or redirect to homepage"
       },
       {
         "id": "GSC2-P2-001",
         "priority": "P2",
         "status": "PENDING",
-        "issue": "54 location pages crawled and rejected by Google \u2014 thin duplicate content",
-        "action": "Rewrite all location pages with minimum 400 words of unique content per page \u2014 local landmarks, specific job types, local testimonials, unique intro paragraphs"
+        "issue": "54 location pages crawled and rejected by Google — thin duplicate content",
+        "action": "Rewrite all location pages with minimum 400 words of unique content per page — local landmarks, specific job types, local testimonials, unique intro paragraphs"
       },
       {
         "id": "GSC2-P2-002",
@@ -1050,14 +1062,14 @@
           "/chimney-repairs/",
           "/services/"
         ],
-        "issue": "60-75 impressions each but ranking page 7-9 \u2014 thin content",
-        "action": "Substantially expand all four core service pages \u2014 minimum 600 words each, FAQs, process descriptions, materials used"
+        "issue": "60-75 impressions each but ranking page 7-9 — thin content",
+        "action": "Substantially expand all four core service pages — minimum 600 words each, FAQs, process descriptions, materials used"
       },
       {
         "id": "GSC2-P3-001",
         "priority": "P3",
         "status": "PENDING",
-        "issue": "Zero structured data \u2014 no rich results showing in Search Appearance",
+        "issue": "Zero structured data — no rich results showing in Search Appearance",
         "action": "Add LocalBusiness schema to homepage, FAQPage schema to service pages, Review schema where applicable"
       },
       {
@@ -1070,25 +1082,25 @@
           "/repointing-brickwork-stonework-follifoot/"
         ],
         "issue": "Quick win pages close to page 1",
-        "action": "Bulk out content on all three \u2014 types-of-pointing pos 14.17, wall-restoration pos 12.0, follifoot pos 15.29 already converting at 28.57% CTR"
+        "action": "Bulk out content on all three — types-of-pointing pos 14.17, wall-restoration pos 12.0, follifoot pos 15.29 already converting at 28.57% CTR"
       },
       {
         "id": "GSC2-P3-003",
         "priority": "P3",
         "status": "PENDING",
-        "issue": "Desktop avg position 65.5 vs mobile 20.1 \u2014 site not competing on desktop",
+        "issue": "Desktop avg position 65.5 vs mobile 20.1 — site not competing on desktop",
         "action": "Add structured content depth, FAQs, and expanded service descriptions across all pages to improve desktop rankings"
       }
     ]
   },
   "project_audit_2026_06_27": {
     "audited": "2026-06-27",
-    "method": "Full filesystem audit \u2014 find, pages.json parse, base.html read, build.py read, assets find",
+    "method": "Full filesystem audit — find, pages.json parse, base.html read, build.py read, assets find",
     "critical_bugs": {
       "BUG-001": {
         "severity": "CRITICAL",
         "status": "RESOLVED",
-        "issue": "base.html uses wrong template token { content } \u2014 build.py replaces {{ content }}. These do not match. Every page builds with no content injected.",
+        "issue": "base.html uses wrong template token { content } — build.py replaces {{ content }}. These do not match. Every page builds with no content injected.",
         "file": "theme/base.html",
         "fix": "Change { content } to {{ content }} in theme/base.html",
         "resolved_date": "2026-06-27",
@@ -1097,9 +1109,9 @@
       "BUG-002": {
         "severity": "CRITICAL",
         "status": "RESOLVED",
-        "issue": "base.html title hardcoded as <title>Nv</title> \u2014 every page on the site has identical title tag. Zero SEO value. Explains zero-click page 1 rankings.",
+        "issue": "base.html title hardcoded as <title>Nv</title> — every page on the site has identical title tag. Zero SEO value. Explains zero-click page 1 rankings.",
         "file": "theme/base.html",
-        "fix": "Make title dynamic \u2014 inject per-page title from pages.json via build.py",
+        "fix": "Make title dynamic — inject per-page title from pages.json via build.py",
         "resolved_date": "2026-06-27",
         "resolved_evidence": "build.py now injects per-page title via {{ title }} token with fallback; verified on rebuilt pateley-bridge page showing correct dynamic title"
       },
@@ -1109,12 +1121,12 @@
         "issue": "Zero meta descriptions across all 32 pages. Google generating its own snippets. No meta_description field being injected by build.py.",
         "fix": "Add meta_description field to all pages in pages.json, inject via build.py and base.html",
         "resolved_date": "2026-06-27",
-        "resolved_evidence": "Mechanism only: meta_description field, build.py injection, and base.html token all wired and verified working with empty-string fallback. Actual description TEXT for all 31 pages still not written \u2014 content task remains PENDING separately from this code fix."
+        "resolved_evidence": "Mechanism only: meta_description field, build.py injection, and base.html token all wired and verified working with empty-string fallback. Actual description TEXT for all 31 pages still not written — content task remains PENDING separately from this code fix."
       },
       "BUG-004": {
         "severity": "CRITICAL",
         "status": "RESOLVED",
-        "issue": "Homepage slug is empty string with 0 words and no title \u2014 blank page being built to build/index.html",
+        "issue": "Homepage slug is empty string with 0 words and no title — blank page being built to build/index.html",
         "fix": "Remove blank slug entry or populate with homepage content",
         "resolved_date": "2026-06-27",
         "resolved_evidence": "Blank slug entry removed from pages.json (32 -> 31 pages, 0 blank slugs remaining, verified by direct parse)"
@@ -1122,7 +1134,7 @@
       "BUG-005": {
         "severity": "CRITICAL",
         "status": "RESOLVED",
-        "issue": "Slug conflict \u2014 empty slug AND index slug both resolve near build/index.html",
+        "issue": "Slug conflict — empty slug AND index slug both resolve near build/index.html",
         "fix": "Remove empty slug page, keep index slug as homepage",
         "resolved_date": "2026-06-27",
         "resolved_evidence": "build.py now auto-copies build/index/index.html to build/index.html on every build; word counts verified matching (6110 words each)"
@@ -1130,7 +1142,7 @@
       "BUG-006": {
         "severity": "HIGH",
         "status": "PENDING",
-        "issue": "No CSS anywhere in project \u2014 assets/ contains only images. Site renders as completely unstyled bare HTML.",
+        "issue": "No CSS anywhere in project — assets/ contains only images. Site renders as completely unstyled bare HTML.",
         "fix": "Create assets/css/style.css and link in base.html"
       },
       "BUG-007": {
@@ -1170,26 +1182,26 @@
       "BUG-012": {
         "severity": "MEDIUM",
         "status": "PENDING",
-        "issue": "gsc-extract-500704-e8f4e0aaccac.json:Zone.Identifier Windows artifact in project root \u2014 should not be in repo",
+        "issue": "gsc-extract-500704-e8f4e0aaccac.json:Zone.Identifier Windows artifact in project root — should not be in repo",
         "fix": "Add to .gitignore and delete"
       },
       "BUG-013": {
         "severity": "MEDIUM",
         "status": "PENDING",
-        "issue": "key.json (GSC API key) sitting in project root \u2014 must not be committed to git",
+        "issue": "key.json (GSC API key) sitting in project root — must not be committed to git",
         "fix": "Add key.json to .gitignore immediately"
       },
       "BUG-014": {
         "severity": "MEDIUM",
         "status": "PENDING",
-        "issue": "Loose index.html in project root \u2014 not inside build/, purpose unclear",
+        "issue": "Loose index.html in project root — not inside build/, purpose unclear",
         "fix": "Investigate and remove if not needed"
       },
       "BUG-015": {
         "severity": "INFO",
         "status": "PENDING",
         "issue": "Only 32 pages in pages.json vs 135 pages known to GSC. Remaining location pages are leftover from old Jekyll installation still being served live.",
-        "note": "Jekyll pages being served from live server are not under omni-builder control \u2014 they will be replaced as new pages are built and deployed"
+        "note": "Jekyll pages being served from live server are not under omni-builder control — they will be replaced as new pages are built and deployed"
       },
       "BUG-016": {
         "severity": "HIGH",
@@ -1214,7 +1226,7 @@
         {
           "slug": "",
           "words": 0,
-          "title": "BLANK \u2014 NO TITLE",
+          "title": "BLANK — NO TITLE",
           "meta": false
         },
         {
@@ -1377,8 +1389,8 @@
       ]
     },
     "base_html_status": {
-      "template_token": "WRONG \u2014 uses { content } not {{ content }}",
-      "title": "HARDCODED as Nv \u2014 not dynamic",
+      "template_token": "WRONG — uses { content } not {{ content }}",
+      "title": "HARDCODED as Nv — not dynamic",
       "css": "NONE",
       "navigation": "NONE",
       "header": "NONE",
@@ -1395,28 +1407,28 @@
       "generates_robots_txt": true,
       "injects_title": true,
       "injects_meta_description": true,
-      "copies_send_php": false
+      "copies_send_php": true
     },
     "assets_status": {
       "images": 30,
       "css_files": 0,
       "js_files": 0,
       "favicon": false,
-      "send_php": false,
+      "send_php": true,
       "image_formats": "Both .jpg and .webp present for all service images"
     },
     "stray_files": [
       {
         "file": "gsc-extract-500704-e8f4e0aaccac.json:Zone.Identifier",
-        "issue": "Windows Zone.Identifier artifact \u2014 add to .gitignore"
+        "issue": "Windows Zone.Identifier artifact — add to .gitignore"
       },
       {
         "file": "key.json",
-        "issue": "GSC API key in project root \u2014 must be in .gitignore immediately"
+        "issue": "GSC API key in project root — must be in .gitignore immediately"
       },
       {
         "file": "index.html",
-        "issue": "Loose index.html in project root \u2014 investigate and remove"
+        "issue": "Loose index.html in project root — investigate and remove"
       }
     ]
   },
@@ -1424,10 +1436,10 @@
     "audited": "2026-06-27",
     "current_branch": "main",
     "commits": 2,
-    "last_commit": "2026-05-26 \u2014 Update Master Report: deployment method and recommended practice appended",
+    "last_commit": "2026-05-26 — Update Master Report: deployment method and recommended practice appended",
     "remote": "https://github.com/vswebsitedesign-ctrl/site_NV.git",
-    "lfs": "confirmed \u2014 data/pages.json tracked via Git LFS",
-    "deploy_workflow": "build-only \u2014 no rsync \u2014 manual rsync required for deployment",
+    "lfs": "confirmed — data/pages.json tracked via Git LFS",
+    "deploy_workflow": "build-only — no rsync — manual rsync required for deployment",
     "untracked_files": [
       "gsc-extract-500704-e8f4e0aaccac.json:Zone.Identifier",
       "key.json",
@@ -1443,39 +1455,39 @@
       "GIT-001": {
         "severity": "CRITICAL",
         "status": "PENDING",
-        "issue": "key.json (live GSC API key) is NOT in .gitignore \u2014 will be committed if git add -A is run",
+        "issue": "key.json (live GSC API key) is NOT in .gitignore — will be committed if git add -A is run",
         "fix": "Add key.json to .gitignore immediately"
       },
       "GIT-002": {
         "severity": "HIGH",
         "status": "PENDING",
-        "issue": "Zone.Identifier file not in .gitignore \u2014 will pollute repo",
+        "issue": "Zone.Identifier file not in .gitignore — will pollute repo",
         "fix": "Add *.Identifier to .gitignore"
       },
       "GIT-003": {
         "severity": "HIGH",
         "status": "PENDING",
-        "issue": "All session scripts untracked \u2014 snapshot.sh, restore.sh, session_start.sh, session_end.sh never committed",
+        "issue": "All session scripts untracked — snapshot.sh, restore.sh, session_start.sh, session_end.sh never committed",
         "fix": "Commit all four scripts to main"
       },
       "GIT-004": {
         "severity": "HIGH",
         "status": "PENDING",
-        "issue": "Master_Report.json modified but not committed \u2014 all audit work today is uncommitted and at risk",
+        "issue": "Master_Report.json modified but not committed — all audit work today is uncommitted and at risk",
         "fix": "Commit Master_Report.json after .gitignore is fixed"
       },
       "GIT-005": {
         "severity": "MEDIUM",
         "status": "PENDING",
-        "issue": "Currently on main with no session branch \u2014 Master Report rules require session branch before any work",
+        "issue": "Currently on main with no session branch — Master Report rules require session branch before any work",
         "fix": "Run bash session_start.sh at start of every future session"
       }
     }
   },
   "live_site_audit_2026_06_27": {
     "audited": "2026-06-27",
-    "method": "Direct HTTP crawl of live URLs \u2014 title, meta, nav, css, h1, schema, noindex, status code",
-    "critical_revelation": "Live site is the ORIGINAL JEKYLL SITE \u2014 omni-builder has never been deployed. Jekyll site is still running on Plesk server.",
+    "method": "Direct HTTP crawl of live URLs — title, meta, nav, css, h1, schema, noindex, status code",
+    "critical_revelation": "Live site is the ORIGINAL JEKYLL SITE — omni-builder has never been deployed. Jekyll site is still running on Plesk server.",
     "live_site_engine": "Jekyll (original)",
     "omni_builder_deployed": false,
     "pages_audited": 35,
@@ -1484,18 +1496,18 @@
     "confirmed_404s": [
       {
         "url": "/index/",
-        "note": "omni-builder slug \u2014 does not exist on Jekyll site"
+        "note": "omni-builder slug — does not exist on Jekyll site"
       },
       {
         "url": "/types-of-pointing-services/",
-        "note": "CRITICAL \u2014 was ranking pos 14.17 with 18 impressions \u2014 quick win page now dead",
+        "note": "CRITICAL — was ranking pos 14.17 with 18 impressions — quick win page now dead",
         "gsc_position": 14.17,
         "gsc_impressions": 18,
         "status": "PENDING FIX"
       },
       {
         "url": "/repointing-brickwork-stonework-harrogate/",
-        "note": "CRITICAL \u2014 was ranking pos 31 with 37 impressions and 1 click \u2014 location page now dead",
+        "note": "CRITICAL — was ranking pos 31 with 37 impressions and 1 click — location page now dead",
         "gsc_position": 31.0,
         "gsc_impressions": 37,
         "gsc_clicks": 1,
@@ -1503,7 +1515,7 @@
       },
       {
         "url": "/elementor-hf/footer/",
-        "note": "GOOD \u2014 WordPress ghost page now returning 404 \u2014 no action needed"
+        "note": "GOOD — WordPress ghost page now returning 404 — no action needed"
       }
     ],
     "technical_state_all_200_pages": {
@@ -1512,19 +1524,19 @@
       "navigation": "PRESENT on all 30 live pages",
       "h1_tags": "1 per page on all 30 live pages",
       "schema_markup": "PRESENT on all 30 live pages",
-      "css_stylesheet": "MISSING on ALL pages \u2014 site rendering as unstyled HTML on all pages",
-      "noindex": "NONE found \u2014 all pages indexable",
-      "robots_txt": "EXISTS \u2014 minimal (2 words)",
-      "sitemap_xml": "EXISTS \u2014 381 tokens"
+      "css_stylesheet": "MISSING on ALL pages — site rendering as unstyled HTML on all pages",
+      "noindex": "NONE found — all pages indexable",
+      "robots_txt": "EXISTS — minimal (2 words)",
+      "sitemap_xml": "EXISTS — 381 tokens"
     },
     "css_finding": {
       "severity": "CRITICAL",
-      "issue": "No CSS stylesheet linked on any live page. Site renders as completely unstyled HTML. This explains desktop CTR of 1.7% at avg position 65.5 \u2014 desktop users landing on unstyled page and bouncing immediately.",
+      "issue": "No CSS stylesheet linked on any live page. Site renders as completely unstyled HTML. This explains desktop CTR of 1.7% at avg position 65.5 — desktop users landing on unstyled page and bouncing immediately.",
       "status": "PENDING"
     },
     "project_state_summary": {
-      "live_server": "Running original Jekyll site \u2014 fully functional but unstyled",
-      "omni_builder": "Never deployed \u2014 all build work local only",
+      "live_server": "Running original Jekyll site — fully functional but unstyled",
+      "omni_builder": "Never deployed — all build work local only",
       "immediate_priority": "Fix 2 dead 404 pages that are losing active GSC rankings, then fix CSS"
     },
     "updated_action_items": [
@@ -1532,35 +1544,35 @@
         "id": "LIVE-P1-001",
         "priority": "P1",
         "status": "PENDING",
-        "issue": "/types-of-pointing-services/ returning 404 \u2014 was ranking pos 14.17 with 18 impressions",
-        "action": "Restore page on live server immediately \u2014 every day this is 404 loses ranking"
+        "issue": "/types-of-pointing-services/ returning 404 — was ranking pos 14.17 with 18 impressions",
+        "action": "Restore page on live server immediately — every day this is 404 loses ranking"
       },
       {
         "id": "LIVE-P1-002",
         "priority": "P1",
         "status": "PENDING",
-        "issue": "/repointing-brickwork-stonework-harrogate/ returning 404 \u2014 was ranking pos 31 with 37 impressions",
+        "issue": "/repointing-brickwork-stonework-harrogate/ returning 404 — was ranking pos 31 with 37 impressions",
         "action": "Restore page on live server immediately"
       },
       {
         "id": "LIVE-P1-003",
         "priority": "P1",
         "status": "PENDING",
-        "issue": "No CSS on any live page \u2014 site completely unstyled \u2014 explaining desktop bounce and 1.7% CTR",
+        "issue": "No CSS on any live page — site completely unstyled — explaining desktop bounce and 1.7% CTR",
         "action": "Identify missing stylesheet, restore CSS link in Jekyll theme or add stylesheet to server"
       },
       {
         "id": "LIVE-P2-001",
         "priority": "P2",
         "status": "PENDING",
-        "issue": "robots.txt is minimal \u2014 2 words only",
+        "issue": "robots.txt is minimal — 2 words only",
         "action": "Fetch and review robots.txt content, add sitemap reference if missing"
       },
       {
         "id": "LIVE-P2-002",
         "priority": "P2",
         "status": "PENDING",
-        "issue": "sitemap.xml exists but content unverified \u2014 may reference dead 404 URLs",
+        "issue": "sitemap.xml exists but content unverified — may reference dead 404 URLs",
         "action": "Fetch sitemap.xml and verify all URLs return 200"
       }
     ]
