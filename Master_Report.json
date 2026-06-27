@@ -34,14 +34,42 @@
   },
   "data_schema": {
     "pages.json": {
-      "total_pages": 32,
+      "total_pages": 6,
       "slugs": [
         ""
       ],
       "fields_detected": [
         "slug",
-        "body_content"
-      ]
+        "body_content",
+        "title"
+      ],
+      "notes": "Location pages removed \u2014 now generated from data/locations.json. Remaining: about-us, index, masonry-repairs, contact, cookie-policy, services."
+    },
+    "locations.json": {
+      "total_locations": 108,
+      "source": "data/locations.json",
+      "template": "theme/location.html",
+      "fields": [
+        "slug",
+        "title",
+        "location_name",
+        "intro_para_1",
+        "intro_para_2",
+        "service_blurbs",
+        "nearby"
+      ],
+      "service_blurb_keys": [
+        "repointing",
+        "masonry_repairs",
+        "stonework",
+        "chimney_repairs",
+        "wall_restoration",
+        "damp_repairs",
+        "pointing_styles",
+        "mortar_lime",
+        "commercial"
+      ],
+      "notes": "Single source of truth for all 108 location pages. Add new locations here \u2014 build.py generates pages automatically."
     }
   },
   "build_pipeline": {
@@ -186,6 +214,18 @@
     {
       "date": "2026-06-27",
       "change": "Git audit completed. 5 issues found (GIT-001 to GIT-005). Critical: key.json not in .gitignore. High: Zone.Identifier not ignored, session scripts untracked, Master_Report.json uncommitted. All logged PENDING."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "Live site audit completed. Key finding: live site is original Jekyll site \u2014 omni-builder never deployed. CSS missing on ALL pages. 2 critical 404s found on pages with active GSC rankings (/types-of-pointing-services/ pos 14.17, /repointing-brickwork-stonework-harrogate/ pos 31). 5 action items logged LIVE-P1-001 through LIVE-P2-002."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "Session continued: BUG-001, BUG-002, BUG-004, BUG-005, BUG-007, BUG-008 RESOLVED and verified by rebuilt output on disk. BUG-003 PARTIALLY_RESOLVED \u2014 injection mechanism working, actual meta description text for 31 pages still pending as separate content task. New bug BUG-016 found and fixed within same session: canonical_url fallback mishandled the non-empty \"index\" homepage slug, causing /index/ to appear as canonical and in sitemap.xml instead of root URL \u2014 corrected and reverified. All fixes snapshotted individually before editing (before-homepage-slug-fix-BUG-004-005, before-sitemap-robots-BUG-007-008, before-canonical-index-fix) and confirmed via rebuilt output, not assumption."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "Location page generator built. data/locations.json created with 108 location records (107 pulled from live server + Harrogate added as new). theme/location.html created as single location template with 11 tokens. build.py patched to generate all 108 location pages from locations.json at build time. 25 location page HTML blobs removed from pages.json \u2014 pages.json now contains only 6 non-location pages. Full rebuild confirmed: 108 location pages + 6 pages = 114 URLs in sitemap, zero unreplaced tokens across entire build."
     }
   ],
   "known_issues": {
@@ -1047,35 +1087,45 @@
     "critical_bugs": {
       "BUG-001": {
         "severity": "CRITICAL",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "base.html uses wrong template token { content } \u2014 build.py replaces {{ content }}. These do not match. Every page builds with no content injected.",
         "file": "theme/base.html",
-        "fix": "Change { content } to {{ content }} in theme/base.html"
+        "fix": "Change { content } to {{ content }} in theme/base.html",
+        "resolved_date": "2026-06-27",
+        "resolved_evidence": "base.html token corrected to {{ content }}; build.py verified injecting content correctly across all 31 pages, zero unreplaced tokens found in full build/ scan"
       },
       "BUG-002": {
         "severity": "CRITICAL",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "base.html title hardcoded as <title>Nv</title> \u2014 every page on the site has identical title tag. Zero SEO value. Explains zero-click page 1 rankings.",
         "file": "theme/base.html",
-        "fix": "Make title dynamic \u2014 inject per-page title from pages.json via build.py"
+        "fix": "Make title dynamic \u2014 inject per-page title from pages.json via build.py",
+        "resolved_date": "2026-06-27",
+        "resolved_evidence": "build.py now injects per-page title via {{ title }} token with fallback; verified on rebuilt pateley-bridge page showing correct dynamic title"
       },
       "BUG-003": {
         "severity": "CRITICAL",
-        "status": "PENDING",
+        "status": "PARTIALLY_RESOLVED",
         "issue": "Zero meta descriptions across all 32 pages. Google generating its own snippets. No meta_description field being injected by build.py.",
-        "fix": "Add meta_description field to all pages in pages.json, inject via build.py and base.html"
+        "fix": "Add meta_description field to all pages in pages.json, inject via build.py and base.html",
+        "resolved_date": "2026-06-27",
+        "resolved_evidence": "Mechanism only: meta_description field, build.py injection, and base.html token all wired and verified working with empty-string fallback. Actual description TEXT for all 31 pages still not written \u2014 content task remains PENDING separately from this code fix."
       },
       "BUG-004": {
         "severity": "CRITICAL",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "Homepage slug is empty string with 0 words and no title \u2014 blank page being built to build/index.html",
-        "fix": "Remove blank slug entry or populate with homepage content"
+        "fix": "Remove blank slug entry or populate with homepage content",
+        "resolved_date": "2026-06-27",
+        "resolved_evidence": "Blank slug entry removed from pages.json (32 -> 31 pages, 0 blank slugs remaining, verified by direct parse)"
       },
       "BUG-005": {
         "severity": "CRITICAL",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "Slug conflict \u2014 empty slug AND index slug both resolve near build/index.html",
-        "fix": "Remove empty slug page, keep index slug as homepage"
+        "fix": "Remove empty slug page, keep index slug as homepage",
+        "resolved_date": "2026-06-27",
+        "resolved_evidence": "build.py now auto-copies build/index/index.html to build/index.html on every build; word counts verified matching (6110 words each)"
       },
       "BUG-006": {
         "severity": "HIGH",
@@ -1085,15 +1135,19 @@
       },
       "BUG-007": {
         "severity": "HIGH",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "No sitemap.xml being generated by build.py. Master Report ai_rules require sitemap on every build.",
-        "fix": "Add sitemap.xml generation to build.py"
+        "fix": "Add sitemap.xml generation to build.py",
+        "resolved_date": "2026-06-27",
+        "resolved_evidence": "sitemap.xml now generated on every build from same canonical_url values used for page output; verified 31 URLs present, root URL correct after canonical fix"
       },
       "BUG-008": {
         "severity": "HIGH",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "No robots.txt being generated by build.py. Master Report ai_rules require robots.txt on every build.",
-        "fix": "Add robots.txt generation to build.py"
+        "fix": "Add robots.txt generation to build.py",
+        "resolved_date": "2026-06-27",
+        "resolved_evidence": "robots.txt now generated on every build referencing sitemap.xml; verified content on disk"
       },
       "BUG-009": {
         "severity": "HIGH",
@@ -1136,6 +1190,16 @@
         "status": "PENDING",
         "issue": "Only 32 pages in pages.json vs 135 pages known to GSC. Remaining location pages are leftover from old Jekyll installation still being served live.",
         "note": "Jekyll pages being served from live server are not under omni-builder control \u2014 they will be replaced as new pages are built and deployed"
+      },
+      "BUG-016": {
+        "severity": "HIGH",
+        "status": "RESOLVED",
+        "found_date": "2026-06-27",
+        "resolved_date": "2026-06-27",
+        "issue": "Introduced during BUG-007/008 work: canonical_url fallback logic only special-cased empty slug as homepage root, not the actual non-empty \"index\" slug used by the real homepage record. Result: both build/index.html and build/index/index.html rendered canonical tag as https://niddvalleybp.co.uk/index/ instead of root, and sitemap.xml listed /index/ instead of /. Caught by manual verification before deployment, not by automated test.",
+        "file": "build.py",
+        "fix": "canonical_url fallback changed to treat slug in ('', 'index') as root URL, matching the same special-case already used for the homepage file-copy logic",
+        "resolved_evidence": "Rebuilt and verified: both canonical tags now show https://niddvalleybp.co.uk/, sitemap.xml contains root URL with no /index/ entry, URL count held steady at 31"
       }
     },
     "pages_json_status": {
@@ -1325,11 +1389,12 @@
     },
     "build_py_status": {
       "builds_pages": true,
+      "builds_location_pages": true,
       "copies_assets": true,
-      "generates_sitemap": false,
-      "generates_robots_txt": false,
-      "injects_title": false,
-      "injects_meta_description": false,
+      "generates_sitemap": true,
+      "generates_robots_txt": true,
+      "injects_title": true,
+      "injects_meta_description": true,
       "copies_send_php": false
     },
     "assets_status": {
@@ -1406,5 +1471,98 @@
         "fix": "Run bash session_start.sh at start of every future session"
       }
     }
+  },
+  "live_site_audit_2026_06_27": {
+    "audited": "2026-06-27",
+    "method": "Direct HTTP crawl of live URLs \u2014 title, meta, nav, css, h1, schema, noindex, status code",
+    "critical_revelation": "Live site is the ORIGINAL JEKYLL SITE \u2014 omni-builder has never been deployed. Jekyll site is still running on Plesk server.",
+    "live_site_engine": "Jekyll (original)",
+    "omni_builder_deployed": false,
+    "pages_audited": 35,
+    "pages_200": 30,
+    "pages_404": 4,
+    "confirmed_404s": [
+      {
+        "url": "/index/",
+        "note": "omni-builder slug \u2014 does not exist on Jekyll site"
+      },
+      {
+        "url": "/types-of-pointing-services/",
+        "note": "CRITICAL \u2014 was ranking pos 14.17 with 18 impressions \u2014 quick win page now dead",
+        "gsc_position": 14.17,
+        "gsc_impressions": 18,
+        "status": "PENDING FIX"
+      },
+      {
+        "url": "/repointing-brickwork-stonework-harrogate/",
+        "note": "CRITICAL \u2014 was ranking pos 31 with 37 impressions and 1 click \u2014 location page now dead",
+        "gsc_position": 31.0,
+        "gsc_impressions": 37,
+        "gsc_clicks": 1,
+        "status": "PENDING FIX"
+      },
+      {
+        "url": "/elementor-hf/footer/",
+        "note": "GOOD \u2014 WordPress ghost page now returning 404 \u2014 no action needed"
+      }
+    ],
+    "technical_state_all_200_pages": {
+      "title_tags": "PRESENT on all 30 live pages",
+      "meta_descriptions": "PRESENT on all 30 live pages",
+      "navigation": "PRESENT on all 30 live pages",
+      "h1_tags": "1 per page on all 30 live pages",
+      "schema_markup": "PRESENT on all 30 live pages",
+      "css_stylesheet": "MISSING on ALL pages \u2014 site rendering as unstyled HTML on all pages",
+      "noindex": "NONE found \u2014 all pages indexable",
+      "robots_txt": "EXISTS \u2014 minimal (2 words)",
+      "sitemap_xml": "EXISTS \u2014 381 tokens"
+    },
+    "css_finding": {
+      "severity": "CRITICAL",
+      "issue": "No CSS stylesheet linked on any live page. Site renders as completely unstyled HTML. This explains desktop CTR of 1.7% at avg position 65.5 \u2014 desktop users landing on unstyled page and bouncing immediately.",
+      "status": "PENDING"
+    },
+    "project_state_summary": {
+      "live_server": "Running original Jekyll site \u2014 fully functional but unstyled",
+      "omni_builder": "Never deployed \u2014 all build work local only",
+      "immediate_priority": "Fix 2 dead 404 pages that are losing active GSC rankings, then fix CSS"
+    },
+    "updated_action_items": [
+      {
+        "id": "LIVE-P1-001",
+        "priority": "P1",
+        "status": "PENDING",
+        "issue": "/types-of-pointing-services/ returning 404 \u2014 was ranking pos 14.17 with 18 impressions",
+        "action": "Restore page on live server immediately \u2014 every day this is 404 loses ranking"
+      },
+      {
+        "id": "LIVE-P1-002",
+        "priority": "P1",
+        "status": "PENDING",
+        "issue": "/repointing-brickwork-stonework-harrogate/ returning 404 \u2014 was ranking pos 31 with 37 impressions",
+        "action": "Restore page on live server immediately"
+      },
+      {
+        "id": "LIVE-P1-003",
+        "priority": "P1",
+        "status": "PENDING",
+        "issue": "No CSS on any live page \u2014 site completely unstyled \u2014 explaining desktop bounce and 1.7% CTR",
+        "action": "Identify missing stylesheet, restore CSS link in Jekyll theme or add stylesheet to server"
+      },
+      {
+        "id": "LIVE-P2-001",
+        "priority": "P2",
+        "status": "PENDING",
+        "issue": "robots.txt is minimal \u2014 2 words only",
+        "action": "Fetch and review robots.txt content, add sitemap reference if missing"
+      },
+      {
+        "id": "LIVE-P2-002",
+        "priority": "P2",
+        "status": "PENDING",
+        "issue": "sitemap.xml exists but content unverified \u2014 may reference dead 404 URLs",
+        "action": "Fetch sitemap.xml and verify all URLs return 200"
+      }
+    ]
   }
 }
