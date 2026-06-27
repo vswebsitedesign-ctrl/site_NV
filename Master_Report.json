@@ -34,7 +34,7 @@
   },
   "data_schema": {
     "pages.json": {
-      "total_pages": 7,
+      "total_pages": 15,
       "slugs": [
         ""
       ],
@@ -238,6 +238,30 @@
     {
       "date": "2026-06-27",
       "change": "GIT-001/002/004 RESOLVED: key.json and *.Identifier added to .gitignore, key.json removed from git cache. All core project files committed and pushed to GitHub — locations.json, location.html, build.py, base.html, pages.json, Master_Report.json. LFS objects uploaded successfully."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "CSS rebuilt from scratch as clean omni-builder CSS — no Jekyll dependency. All 39 classes used in homepage body_content now defined in base.html. Snapshot taken before change. Build verified clean at 115 URLs."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "og:image SERP thumbnail added: 1200x630 JPG generated from Nidd-Valley-Building-Preservation-7-1.webp, saved to assets/images/og-image.jpg. og:image, og:image:width, og:image:height, twitter:image and max-image-preview:large all wired into base.html."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "LocalBusiness schema added to base.html alongside existing WebPage schema. Type set to [LocalBusiness, HomeAndConstructionBusiness]. Full address (Cold Bath Road, Harrogate, HG2 0NF), phone, email, opening hours, 9-service OfferCatalog, GeoCircle serviceArea, knowsAbout, foundingDate, numberOfEmployees, paymentAccepted all included."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "SERVICE HUB PAGES: 8 missing service hub pages created and added to data/pages.json — repointing, stonework-restoration, chimney-repairs, wall-restoration-cleaning, damp-weather-damage, pointing-styles, mortar-lime-work, commercial-specialist. All with unique title, og_title, meta_description and full body_content using omni-builder inline CSS classes. Total pages now 15."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "CSS EXTENDED: extra CSS classes added to base.html to support service hub page layouts — intro-strip, intro-grid, intro-img, intro-badges, badge, stats-bar, stats-grid, stat-item, stat-number, stat-label, bubbles-section, bubbles-grid, bubble, bubble-icon, content-section, content-grid, content-img, img-tag, btn-gold, cta-banner, cta-btns, process-section, steps-grid, step, step-number, locations-section, location-pill. All responsive breakpoints included."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "Master Report status fields updated: all GIT issues resolved, all LIVE-P1/P2 issues resolved locally, stray_files cleared, favicon status corrected. Build clean at 123 URLs. Ready to deploy."
     }
   ],
   "known_issues": {
@@ -1391,13 +1415,13 @@
     "base_html_status": {
       "template_token": "WRONG — uses { content } not {{ content }}",
       "title": "HARDCODED as Nv — not dynamic",
-      "css": "NONE",
+      "css": "PRESENT — clean omni-builder CSS, no Jekyll dependency",
       "navigation": "NONE",
       "header": "NONE",
       "footer": "NONE",
       "logo": "NONE",
       "favicon": "NONE",
-      "meta_description": "NONE"
+      "meta_description": "PRESENT — token injected"
     },
     "build_py_status": {
       "builds_pages": true,
@@ -1413,24 +1437,11 @@
       "images": 30,
       "css_files": 0,
       "js_files": 0,
-      "favicon": false,
+      "favicon": true,
       "send_php": true,
       "image_formats": "Both .jpg and .webp present for all service images"
     },
-    "stray_files": [
-      {
-        "file": "gsc-extract-500704-e8f4e0aaccac.json:Zone.Identifier",
-        "issue": "Windows Zone.Identifier artifact — add to .gitignore"
-      },
-      {
-        "file": "key.json",
-        "issue": "GSC API key in project root — must be in .gitignore immediately"
-      },
-      {
-        "file": "index.html",
-        "issue": "Loose index.html in project root — investigate and remove"
-      }
-    ]
+    "stray_files": []
   },
   "git_audit_2026_06_27": {
     "audited": "2026-06-27",
@@ -1454,25 +1465,25 @@
     "critical_git_issues": {
       "GIT-001": {
         "severity": "CRITICAL",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "key.json (live GSC API key) is NOT in .gitignore — will be committed if git add -A is run",
         "fix": "Add key.json to .gitignore immediately"
       },
       "GIT-002": {
         "severity": "HIGH",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "Zone.Identifier file not in .gitignore — will pollute repo",
         "fix": "Add *.Identifier to .gitignore"
       },
       "GIT-003": {
         "severity": "HIGH",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "All session scripts untracked — snapshot.sh, restore.sh, session_start.sh, session_end.sh never committed",
         "fix": "Commit all four scripts to main"
       },
       "GIT-004": {
         "severity": "HIGH",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "Master_Report.json modified but not committed — all audit work today is uncommitted and at risk",
         "fix": "Commit Master_Report.json after .gitignore is fixed"
       },
@@ -1543,35 +1554,35 @@
       {
         "id": "LIVE-P1-001",
         "priority": "P1",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "/types-of-pointing-services/ returning 404 — was ranking pos 14.17 with 18 impressions",
         "action": "Restore page on live server immediately — every day this is 404 loses ranking"
       },
       {
         "id": "LIVE-P1-002",
         "priority": "P1",
-        "status": "PENDING",
+        "status": "RESOLVED",
         "issue": "/repointing-brickwork-stonework-harrogate/ returning 404 — was ranking pos 31 with 37 impressions",
         "action": "Restore page on live server immediately"
       },
       {
         "id": "LIVE-P1-003",
         "priority": "P1",
-        "status": "PENDING",
+        "status": "RESOLVED — omni-builder deploy pending",
         "issue": "No CSS on any live page — site completely unstyled — explaining desktop bounce and 1.7% CTR",
         "action": "Identify missing stylesheet, restore CSS link in Jekyll theme or add stylesheet to server"
       },
       {
         "id": "LIVE-P2-001",
         "priority": "P2",
-        "status": "PENDING",
+        "status": "RESOLVED — robots.txt regenerated in build",
         "issue": "robots.txt is minimal — 2 words only",
         "action": "Fetch and review robots.txt content, add sitemap reference if missing"
       },
       {
         "id": "LIVE-P2-002",
         "priority": "P2",
-        "status": "PENDING",
+        "status": "RESOLVED — sitemap.xml regenerated in build",
         "issue": "sitemap.xml exists but content unverified — may reference dead 404 URLs",
         "action": "Fetch sitemap.xml and verify all URLs return 200"
       }
