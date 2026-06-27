@@ -278,6 +278,10 @@
     {
       "date": "2026-06-27",
       "change": "SITEMAP SUBMITTED: https://niddvalleybp.co.uk/sitemap.xml submitted to Google Search Console. 123 URLs queued for crawl."
+    },
+    {
+      "date": "2026-06-27",
+      "change": "Next session reminder added: check GSC around 2026-07-18 for ranking movement after first omni-builder deploy. See next_session field for full checklist."
     }
   ],
   "known_issues": {
@@ -1602,6 +1606,20 @@
         "issue": "sitemap.xml exists but content unverified — may reference dead 404 URLs",
         "action": "Fetch sitemap.xml and verify all URLs return 200"
       }
+    ]
+  },
+  "next_session": {
+    "reminder": "Check GSC in 2-3 weeks (around 2026-07-18) for ranking movement after first omni-builder deploy.",
+    "check": [
+      "types-of-pointing-services — was pos 14.17, was 404, now restored — should climb",
+      "repointing-brickwork-stonework-harrogate — was pos 31, was 404, now restored — should recover",
+      "CTR improvement on desktop — was 1.7% with no CSS, now fully styled",
+      "New location pages appearing in GSC index for first time",
+      "GSC coverage report — thin content rejections should reduce as unique blurbs are crawled"
+    ],
+    "actions": [
+      "GSC content expansion on highest-impression zero-click pages",
+      "Review GSC coverage report for any new issues post-deploy"
     ]
   }
 }
